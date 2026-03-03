@@ -1,45 +1,28 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// class ProfileScreen extends StatelessWidget {
-//   const ProfileScreen({super.key});
+class TaskCard extends StatelessWidget {
+  final String title;
+  final String time;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text("Profile"),
-//         backgroundColor: const Color(0xFFE88C6B),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16),
-//         child: Column(
-//           children: [
-//             CircleAvatar(
-//               radius: 50,
-//               backgroundImage: AssetImage('assets/images/profile.png'),
-//             ),
-//             const SizedBox(height: 16),
-//             const Text(
-//               "John Doe",
-//               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-//             ),
-//             const SizedBox(height: 8),
-//             const Text(
-//               "Student",
-//               style: TextStyle(fontSize: 16, color: Colors.black54),
-//             ),
-//             const SizedBox(height: 24),
-//             ListTile(
-//               leading: const Icon(Icons.calendar_today),
-//               title: const Text("Daily Schedule"),
-//             ),
-//             ListTile(
-//               leading: const Icon(Icons.settings),
-//               title: const Text("Settings"),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+  const TaskCard({
+    super.key,
+    required this.title,
+    required this.time,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 12),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: ListTile(
+        leading: const Icon(Icons.book, color: Color(0xFFE88C6B)),
+        title: Text(title),
+        subtitle: Text(time),
+        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+      ),
+    );
+  }
+}
