@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'screens/welcome_screen.dart';
+import 'screens/block_blast_page.dart';
 
 void main() {
-  runApp(const MyDayApp());
+  runApp(const MyApp());
 }
 
-class MyDayApp extends StatelessWidget {
-  const MyDayApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Block Blast',
       debugShowCheckedModeBanner: false,
-      title: 'MyDay',
       theme: ThemeData(
-        primaryColor: const Color(0xFFE88C6B),
-        scaffoldBackgroundColor: const Color(0xFFF4EDE4),
-        fontFamily: 'Arial',
+        brightness: Brightness.dark,
+        primarySwatch: Colors.blue,
+        useMaterial3: true,
+        fontFamily: 'Roboto',
       ),
-      home: const WelcomeScreen(),
+      home: const BlockBlastPage(),
     );
   }
 }
