@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/block_blast_page.dart';
+import 'package:my_day/screens/home_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Roboto',
       ),
-      home: const BlockBlastPage(),
+      home: const HomeScreen(),
     );
   }
 }

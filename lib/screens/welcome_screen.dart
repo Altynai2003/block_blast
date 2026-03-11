@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_day/screens/home_sceens.dart';
+import 'package:my_day/screens/home_screen.dart';
 
 
 class WelcomeScreen extends StatelessWidget {

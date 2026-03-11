@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../logic/game_logic.dart';
 import '../widgets/grid_cell.dart';
 import '../widgets/draggable_block.dart';
@@ -18,7 +20,24 @@ class _BlockBlastPageState extends State<BlockBlastPage> {
   @override
   void initState() {
     super.initState();
+    _loadHighScore();
     _refreshBlocks();
+  }
+
+  Future<void> _loadHighScore() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _highScore = prefs.getInt('highScore') ?? 0;
+    });
+  }
+
+  Future<void> _saveHighScore() async {
+    if (_game.score <= _highScore) return;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('highScore', _game.score);
+    setState(() {
+      _highScore = _game.score;
+    });
   }
 
   void _refreshBlocks() {
@@ -44,6 +63,10 @@ class _BlockBlastPageState extends State<BlockBlastPage> {
   }
 
   void _showGameOver() {
+    // make sure persisted score is updated before showing dialog so the
+    // home page can rely on whatever is saved.
+    _saveHighScore();
+
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -69,6 +92,14 @@ class _BlockBlastPageState extends State<BlockBlastPage> {
               });
             },
             child: const Text('Кайра баштоо'),
+          ),
+          TextButton(
+            onPressed: () {
+              // return to menu -- value not used but could be extended
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
+            },
+            child: const Text('Меню'),
           ),
         ],
       ),
